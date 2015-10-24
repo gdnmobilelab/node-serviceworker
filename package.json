@@ -1,0 +1,27 @@
+{
+  "name": "node-serviceworker",
+  "version": "0.1.0",
+  "description": "Environment for running serviceworkers in node.js, as 'isomorphic' request handlers for clients without SW support.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha --ui exports"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gwicke/node-serviceworker.git"
+  },
+  "keywords": [
+    "serviceworker",
+    "nodejs",
+    "isomorphic"
+  ],
+  "author": "Gabriel Wicke <gwicke@wikimedia.org>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gwicke/node-serviceworker/issues"
+  },
+  "dependencies": {
+    "bluebird": "^2.10.2",
+    "isomorphic-fetch": "^2.2.0"
+  }
+}
