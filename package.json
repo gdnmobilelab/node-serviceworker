@@ -4,7 +4,7 @@
   "description": "Environment for running serviceworkers in node.js, as 'isomorphic' request handlers for clients without SW support.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --ui exports"
+    "test": "mocha --ui exports test/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
   "dependencies": {
     "bluebird": "^2.10.2",
     "isomorphic-fetch": "^2.2.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.3"
   }
 }

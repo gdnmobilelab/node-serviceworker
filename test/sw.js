@@ -5,10 +5,6 @@ var CACHE_NAME = 'my-site-cache-v1';
 var tplURL = '/wiki/Test';
 var tpl;
 
-if (!global.self) {
-    var self = this;
-}
-
 self.addEventListener('install', function(event) {
     // Perform install steps
     event.waitUntil(

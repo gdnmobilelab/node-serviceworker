@@ -4,6 +4,8 @@
 		"Map",
 		"Set",
         "fetch",
+        "Request",
+        "Response",
         "caches"
 	],
 
