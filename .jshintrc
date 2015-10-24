@@ -1,13 +1,10 @@
 {
 	"predef": [
-		"ve",
-
 		"setImmediate",
-
-		"QUnit",
-
 		"Map",
-		"Set"
+		"Set",
+        "fetch",
+        "caches"
 	],
 
 	"bitwise": true,
