@@ -2,7 +2,7 @@
 
 var CACHE_NAME = 'my-site-cache-v1';
 
-var tplURL = '/wiki/Test';
+var tplURL = 'https://en.wikipedia.org/wiki/Test';
 var tpl;
 
 self.addEventListener('install', function(event) {
