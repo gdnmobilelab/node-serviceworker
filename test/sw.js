@@ -6,14 +6,16 @@ var tplURL = 'https://en.wikipedia.org/wiki/Test';
 var tpl;
 
 self.addEventListener('install', function(event) {
+    console.log('installing...', event);
     // Perform install steps
     event.waitUntil(
         caches.open(CACHE_NAME)
-        .then(cache =>
-            fetch(tplURL, { credentials: 'include' })
-            .then(res => res.text())
-            .then(tpl => replaceContent(tpl, ''))
-            .then(body => cache.put(tplURL, new Response(body))))
+        .then(function(cache) {
+            return fetch(tplURL, { credentials: 'include' })
+            .then(function(res) { return res.text(); })
+            .then(function(tpl) { return replaceContent(tpl, ''); })
+            .then(function(body) { return cache.put(tplURL, new Response(body)); });
+        })
     );
 });
 
@@ -74,7 +76,6 @@ function assemblePage(req) {
 }
 
 self.addEventListener('fetch', function(event) {
-    //console.log(event.request.url);
     if (/\/w\/iki\/[^?]+$/.test(event.request.url)) {
         //console.log('fetching', event.request.url);
         return event.respondWith(
