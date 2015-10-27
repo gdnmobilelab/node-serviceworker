@@ -6,7 +6,7 @@ var tplURL = 'https://en.wikipedia.org/wiki/Test';
 var tpl;
 
 self.addEventListener('install', function(event) {
-    console.log('installing...', event);
+    //console.log('installing...', event);
     // Perform install steps
     event.waitUntil(
         caches.open(CACHE_NAME)
