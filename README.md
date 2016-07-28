@@ -11,3 +11,11 @@ Based on [this task](https://phabricator.wikimedia.org/T116126).
 - `Request` wrapper for Node's [IncomingMessage](https://nodejs.org/api/http.html#http_http_incomingmessage).
 - [Cache](http://www.w3.org/TR/service-workers/#cache-objects). On the server, we might want to use this for in-process caching of frequently-used fragments.
 
+## TODO
+
+- Accept `ReadableStream` body responses in `FetchEvent.respondWith` (adapt to
+    node stream?)
+- Add `ReadableStream` support in
+    [node-fetch](https://github.com/bitinn/node-fetch):
+    - Return a `ReadableStream` response body.
+    - Accept a `ReadableStream` request body (lower prio).
