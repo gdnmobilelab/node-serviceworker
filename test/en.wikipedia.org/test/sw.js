@@ -1,28 +1,39 @@
 "use strict";
 
-var CACHE_NAME = 'my-site-cache-v1';
+const CACHE_NAME = 'my-site-cache-v1';
+const tplURL = 'https://en.wikipedia.org/wiki/Test';
 
-var tplURL = 'https://en.wikipedia.org/wiki/Test';
-var tpl;
-
-self.addEventListener('install', function(event) {
+self.addEventListener('install', event => {
     //console.log('installing...', event);
     // Perform install steps
     event.waitUntil(
         caches.open(CACHE_NAME)
-        .then(function(cache) {
-            return fetch(tplURL, { credentials: 'include' })
-            .then(function(res) { return res.text(); })
-            .then(function(tpl) { return replaceContent(tpl, ''); })
-            .then(function(body) { return cache.put(tplURL, new Response(body)); });
-        })
-    );
+        .then(cache => fetch(tplURL, {credentials: 'include'})
+            .then(res => res.text())
+            .then(tplSrc => {
+                let tpl = replaceContent(tplSrc, '');
+                return cache.put(tplURL, new Response(tpl));
+            })));
 });
 
 function fetchBody(req, title) {
-    var protoHost = req.url.match(/^(https?:\/\/[^\/]+)\//)[1];
-    return fetch(protoHost + '/api/rest_v1/page/html/' + title)
-        .then(res => res.text());
+    return caches.open(CACHE_NAME)
+    .then(cache =>
+        cache.match(req)
+        .then(cacheRes => {
+            if (cacheRes) {
+                return cacheRes.text();
+            } else {
+                const protoHost = req.url.match(/^(https?:\/\/[^\/]+)\//)[1];
+                return fetch(protoHost + '/api/rest_v1/page/html/' + title)
+                    .then(res => res.text())
+                    .then(text => {
+                        // TODO: Support streaming straight to caches
+                        cache.put(req.url, new Response(text));
+                        return text;
+                    });
+            }
+        }));
 }
 
 function getTemplate() {
@@ -44,12 +55,10 @@ function cheapBodyInnerHTML(html) {
 
 function replaceContent(tpl, content) {
     var bodyMatcher = /(<div id="mw-content-text"[^>]*>)[\s\S]*(<div class="printfooter")/im;
-    return tpl.replace(bodyMatcher, function(all, start, end) {
-        return start + content + end;
-    });
+    return tpl.replace(bodyMatcher, (all, start, end) => start + content + end);
 }
 
-var escapes = {
+const escapes = {
     '<': '&lt;',
     '"': '&quot;',
     "'": '&#39;'
@@ -75,7 +84,7 @@ function assemblePage(req) {
         .then(results => injectBody(results[0], results[1], req, title));
 }
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', event => {
     if (/\/w\/iki\/[^?]+$/.test(event.request.url)) {
         //console.log('fetching', event.request.url);
         return event.respondWith(
