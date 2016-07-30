@@ -3,10 +3,6 @@
 		"setImmediate",
 		"Map",
 		"Set",
-        "fetch",
-        "Request",
-        "Response",
-        "caches"
 	],
 
 	"bitwise": true,

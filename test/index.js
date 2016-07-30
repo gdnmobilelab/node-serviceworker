@@ -2,9 +2,9 @@ var ServiceWorkerContainer = require('../lib/');
 
 module.exports = {
     Install: {
-        "Basic install": function() {
+        "Basic install & fetch": function() {
             return (new ServiceWorkerContainer())
-                .register('./test/sw.js', { scope: '/' })
+                .register('https://en.wikipedia.org/test/sw.js', { scope: '/w/iki/' })
                 .then(function(registration) {
                     return registration.fetch('https://en.wikipedia.org/w/iki/Foobar');
                 })
@@ -12,8 +12,8 @@ module.exports = {
                     return res.text();
                 })
                 .then(function(txt) {
-                    if (!/Foobar/.test(txt)) {
-                        throw new Error('Expected Foobar in result HTML!');
+                    if (!/FOOBAR/.test(txt)) {
+                        throw new Error('Expected FOOBAR in result HTML!');
                     };
                 });
         }

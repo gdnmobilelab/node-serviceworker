@@ -23,7 +23,7 @@
   "dependencies": {
     "bluebird": "^2.10.2",
     "node-fetch": "git://github.com/gwicke/node-fetch#blob_and_streams",
-    "web-streams-polyfill": "git://github.com/gwicke/web-streams-polyfill.git#spec_performance_improvements"
+    "node-web-streams": "^0.2.1"
   },
   "devDependencies": {
     "mocha": "^2.3.3"
