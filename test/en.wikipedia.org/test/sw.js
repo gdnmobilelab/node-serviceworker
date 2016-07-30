@@ -26,11 +26,9 @@ function fetchBody(req, title) {
             } else {
                 const protoHost = req.url.match(/^(https?:\/\/[^\/]+)\//)[1];
                 return fetch(protoHost + '/api/rest_v1/page/html/' + title)
-                    .then(res => res.text())
-                    .then(text => {
-                        // TODO: Support streaming straight to caches
-                        cache.put(req.url, new Response(text));
-                        return text;
+                    .then(res => {
+                        cache.put(req.url, res.clone());
+                        return res.text();
                     });
             }
         }));

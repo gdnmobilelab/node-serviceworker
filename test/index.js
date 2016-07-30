@@ -10,7 +10,7 @@ module.exports = {
             return container
                 .register('https://en.wikipedia.org/test/sw.js', { scope: '/w/iki/' })
                 .then(() => {
-                    let iters = 500;
+                    let iters = 1000;
                     const startTime = Date.now();
                     function bench(i) {
                         // console.log(i);
