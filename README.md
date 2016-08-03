@@ -20,10 +20,19 @@ Based on [this task](https://phabricator.wikimedia.org/T116126).
 - Accept `ReadableStream` body responses in `FetchEvent.respondWith`
 
 ## TODO
-- Prevent ServiceWorker code from messing with globals.
-- More closely implement
-    [WorkerGlobalScope](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope).
+Top priority: Set up a basic rendering service & example ServiceWorker.
+
 - Improve registration & SW update interfaces
     - Fetch ServiceWorker code from a URL, or map the URL to a local file.
     - Periodic refresh for remote SWs
 
+Later:
+- Prevent ServiceWorker code from messing with globals. This is
+    straightforward for built-in JS globals via the `vm` module, but can only
+    done in limited ways (via shallow `Object.freeze`) for `console`.
+- More closely implement
+    [WorkerGlobalScope](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope). Roughly in order of importance:
+    - `console` has a lot more methods in browsers than in node
+    - `location` (easy)
+    - `performance` object
+    - `navigator` object
