@@ -1,5 +1,7 @@
 'use strict';
 
+global.Promise = require('bluebird');
+
 var ServiceWorkerContainer = require('../lib/');
 
 module.exports = {
