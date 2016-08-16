@@ -8,7 +8,7 @@ module.exports = {
             const testURL = 'https://en.wikipedia.org/w/iki/Foobar';
             const container = new ServiceWorkerContainer();
             return container
-                .register('https://en.wikipedia.org/test/sw.js', { scope: '/w/iki/' })
+                .register('https://en.wikipedia.org/test/sw.js', { scope: '/w/iki/', online: false })
                 .then(() => {
                     let iters = 1000;
                     const startTime = Date.now();

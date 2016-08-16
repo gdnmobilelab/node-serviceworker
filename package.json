@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "bluebird": "^2.10.2",
-    "node-fetch": "git://github.com/gwicke/node-fetch#blob_and_streams",
+    "node-fetch-polyfill": "^2.0.0",
     "node-web-streams": "^0.2.1"
   },
   "devDependencies": {
