@@ -1,6 +1,6 @@
 {
   "name": "node-serviceworker",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Environment for running serviceworkers in node.js, as 'isomorphic' request handlers for clients without SW support.",
   "main": "lib/index.js",
   "scripts": {
