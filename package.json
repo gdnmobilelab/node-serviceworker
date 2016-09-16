@@ -23,6 +23,7 @@
   "dependencies": {
     "bluebird": "^2.10.2",
     "dom-urls": "^1.1.0",
+    "fake-indexeddb": "^1.0.8",
     "node-fetch-polyfill": "^2.0.4",
     "node-web-streams": "^0.2.1"
   },
