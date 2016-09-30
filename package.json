@@ -1,6 +1,6 @@
 {
   "name": "node-serviceworker",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Environment for running serviceworkers in node.js, as 'isomorphic' request handlers for clients without SW support.",
   "main": "lib/index.js",
   "scripts": {
@@ -24,8 +24,8 @@
     "bluebird": "^2.10.2",
     "dom-urls": "^1.1.0",
     "fake-indexeddb": "^1.0.8",
-    "node-fetch-polyfill": "^2.0.4",
-    "node-web-streams": "^0.2.1"
+    "node-fetch-polyfill": "^2.0.6",
+    "node-web-streams": "^0.2.2"
   },
   "devDependencies": {
     "mocha": "^2.3.3"
