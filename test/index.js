@@ -33,6 +33,20 @@ module.exports = {
                                     'ms/iter'));
                 });
 
+        },
+        "Allows you to manually provide worker source": function() {
+            const testJS = "var test = 'hello!';";
+            const container = new ServiceWorkerContainer();
+            return container
+                .register('https://www.example.com', {scope: '/', _source: testJS})
+                .then((reg) => {
+                    return reg.active._getWorkerSource()
+                })
+                .then((source) => {
+                    if (source !== testJS) {
+                        throw new Error("JS doesn't match what was provided")
+                    }
+                })
         }
     }
 };
